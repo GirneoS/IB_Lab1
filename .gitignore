@@ -1,0 +1,10 @@
+target/
+.idea/
+*.iml
+.DS_Store
+.env
+*.db
+*.db-shm
+*.db-wal
+dependency-check-data/
+

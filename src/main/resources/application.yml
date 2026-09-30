@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: secure-rest-api
+  datasource:
+    url: jdbc:sqlite:${SQLITE_PATH:secure-api.db}
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      maximum-pool-size: 1
+      connection-init-sql: PRAGMA foreign_keys=ON
+  sql:
+    init:
+      mode: always
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+
+server:
+  error:
+    include-message: never
+    include-binding-errors: never
+    include-stacktrace: never
+
+app:
+  jwt:
+    issuer: secure-rest-api
+    lifetime: 15m
+    secret: ${JWT_SECRET:Y2hhbmdlLW1lLWJlZm9yZS1wcm9kdWN0aW9uLTMya2V5IQ==}
+  bootstrap:
+    admin-username: ${APP_ADMIN_USERNAME:admin}
+    admin-password: ${APP_ADMIN_PASSWORD:ChangeMe123!}
+
