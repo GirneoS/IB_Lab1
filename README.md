@@ -109,4 +109,16 @@ src/main/java/ru/itmo/secureapi
 
 ## CI/CD
 
-Конфигурация находится в `.github/workflows/ci.yml`. После публикации репозитория ссылки на последний успешный запуск и отчёты можно взять на вкладке Actions.
+Конфигурация находится в `.github/workflows/ci.yml`. Репозиторий и история запусков доступны по ссылкам:
+
+- [публичный репозиторий](https://github.com/GirneoS/IB_Lab1);
+- [GitHub Actions](https://github.com/GirneoS/IB_Lab1/actions);
+- [успешный запуск с тестами, SAST и SCA](https://github.com/GirneoS/IB_Lab1/actions/runs/38528134407).
+
+Успешный запуск workflow:
+
+![Успешный запуск GitHub Actions](docs/github-actions-run.png)
+
+Выполненные шаги тестирования и анализа безопасности:
+
+![Шаги тестирования, SpotBugs SAST и OWASP Dependency Check SCA](docs/github-actions-job.png)
