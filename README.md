@@ -94,6 +94,8 @@ GitHub Actions запускает эти команды при каждом push
 
 Первое выполнение Dependency-Check загружает поддерживаемое проектом OWASP зеркало данных NVD. GitHub Actions сохраняет локальную базу анализатора в кэше, поэтому следующие проверки выполняются быстрее.
 
+Файл `dependency-check-suppressions.xml` содержит одно точечное подавление ложного совпадения: CVE-2025-15104 относится к Nu Html Checker (`nu.validator:validator`), но анализатор сопоставляет его с Hibernate Validator из-за общего CPE-имени `validator`. Подавление ограничено одновременно конкретным CVE и package URL Hibernate Validator.
+
 ## Структура проекта
 
 ```text

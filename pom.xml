@@ -102,6 +102,9 @@
                         <format>HTML</format>
                         <format>JSON</format>
                     </formats>
+                    <suppressionFiles>
+                        <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
+                    </suppressionFiles>
                     <nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable>
                     <nvdDatafeedUrl>https://dependency-check.github.io/DependencyCheck_Builder/nvd_cache/nvdcve-{0}.json.gz</nvdDatafeedUrl>
                     <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
