@@ -27,9 +27,9 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ~/.m2/repository/org/owasp/dependency-check-data
-          key: dependency-check-${{ runner.os }}-${{ hashFiles('pom.xml') }}
+          key: dependency-check-v2-${{ runner.os }}-${{ hashFiles('pom.xml') }}
           restore-keys: |
-            dependency-check-${{ runner.os }}-
+            dependency-check-v2-${{ runner.os }}-
 
       - name: Compile and run tests
         run: ./mvnw --batch-mode --no-transfer-progress verify
@@ -38,6 +38,8 @@ jobs:
         run: ./mvnw --batch-mode --no-transfer-progress spotbugs:check
 
       - name: Run OWASP Dependency Check SCA
+        env:
+          MAVEN_OPTS: --add-modules=jdk.incubator.vector
         run: ./mvnw --batch-mode --no-transfer-progress dependency-check:check
 
       - name: Upload security reports

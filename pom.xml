@@ -23,7 +23,9 @@
         <hibernate-validator.version>9.1.5.Final</hibernate-validator.version>
         <sqlite-jdbc.version>3.53.4.0</sqlite-jdbc.version>
         <spotbugs-maven-plugin.version>4.10.4.1</spotbugs-maven-plugin.version>
-        <dependency-check-maven.version>12.1.0</dependency-check-maven.version>
+        <dependency-check-maven.version>12.2.2</dependency-check-maven.version>
+        <!-- Required for Surefire's late replacement in the Mockito javaagent argument. -->
+        <argLine></argLine>
     </properties>
 
     <dependencies>
@@ -82,6 +84,26 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>expose-dependency-paths</id>
+                        <goals>
+                            <goal>properties</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- Java 21+: load Mockito at JVM startup instead of dynamic self-attachment. -->
+                    <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar} -Xshare:off</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>${spotbugs-maven-plugin.version}</version>
@@ -108,7 +130,7 @@
                     <nvdApiKeyEnvironmentVariable>NVD_API_KEY</nvdApiKeyEnvironmentVariable>
                     <nvdDatafeedUrl>https://dependency-check.github.io/DependencyCheck_Builder/nvd_cache/nvdcve-{0}.json.gz</nvdDatafeedUrl>
                     <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
-                    <ossindexAnalyzerEnabled>false</ossindexAnalyzerEnabled>
+                    <ossIndexAnalyzerEnabled>false</ossIndexAnalyzerEnabled>
                 </configuration>
             </plugin>
         </plugins>
