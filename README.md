@@ -96,16 +96,6 @@ GitHub Actions запускает эти команды при каждом push
 
 Файл `dependency-check-suppressions.xml` содержит одно точечное подавление ложного совпадения: CVE-2025-15104 относится к Nu Html Checker (`nu.validator:validator`), но анализатор сопоставляет его с Hibernate Validator из-за общего CPE-имени `validator`. Подавление ограничено одновременно конкретным CVE и package URL Hibernate Validator.
 
-## Структура проекта
-
-```text
-src/main/java/ru/itmo/secureapi
-├── auth       — вход и выпуск JWT
-├── common     — безопасные ответы об ошибках
-├── config     — Spring Security и проверка JWT
-├── note       — защищённые методы работы с заметками
-└── user       — пользователи, BCrypt и доступ к SQLite
-```
 
 ## CI/CD
 
