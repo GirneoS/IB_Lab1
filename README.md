@@ -92,10 +92,6 @@ GitHub Actions запускает эти команды при каждом push
 - OWASP Dependency-Check проверяет зависимости по базе известных уязвимостей (SCA) и формирует HTML/JSON-отчёты;
 - отчёты сохраняются в артефакте `security-reports` запуска workflow.
 
-Первое выполнение Dependency-Check загружает поддерживаемое проектом OWASP зеркало данных NVD. GitHub Actions сохраняет локальную базу анализатора в кэше, поэтому следующие проверки выполняются быстрее.
-
-Файл `dependency-check-suppressions.xml` содержит одно точечное подавление ложного совпадения: CVE-2025-15104 относится к Nu Html Checker (`nu.validator:validator`), но анализатор сопоставляет его с Hibernate Validator из-за общего CPE-имени `validator`. Подавление ограничено одновременно конкретным CVE и package URL Hibernate Validator.
-
 
 ## CI/CD
 
